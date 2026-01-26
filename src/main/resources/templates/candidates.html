@@ -43,13 +43,13 @@
             <td th:text="${offer.email}"></td>
             <td th:text="${offer.position}"></td>
 
-            <!-- Candidate Response -->
+            <!-- Candidate Response - FIXED -->
             <td>
                 <span class="status"
-                      th:text="${offer.status == 'ACCEPTED' ? 'Accepted' :
-	                                (offer.status == 'REJECTED' ? 'Rejected' : 'Pending')}"
-	                      th:classappend="${offer.status}">
-	                </span>
+                      th:text="${offer.candidateResponse == 'ACCEPTED' ? 'Accepted' :
+                                (offer.candidateResponse == 'REJECTED' ? 'Rejected' : 'Pending')}"
+                      th:classappend="${offer.candidateResponse != null ? offer.candidateResponse : 'PENDING'}">
+                </span>
             </td>
 
             <!-- ONLY EDIT BUTTON -->
