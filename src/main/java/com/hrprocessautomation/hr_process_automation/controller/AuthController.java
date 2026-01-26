@@ -172,7 +172,7 @@ public class AuthController {
 
 
         if ("accept".equalsIgnoreCase(action)) {
-            offer.setcandidateResponse(action);
+            offer.setcandidateResponse("ACCEPTED");
         } else if ("reject".equalsIgnoreCase(action)) {
             offer.setcandidateResponse("REJECTED");
         }
