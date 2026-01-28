@@ -58,10 +58,10 @@ public class Offer {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getcandidateResponse() {
+	public String getCandidateResponse() {
 		return candidateResponse;
 	}
-	public void setcandidateResponse(String candidate_response) {
+	public void setCandidateResponse(String candidate_response) {
 		this.candidateResponse = candidate_response;
 	}
 	public LocalDateTime getCreatedAt() {

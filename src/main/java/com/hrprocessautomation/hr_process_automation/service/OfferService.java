@@ -42,8 +42,8 @@ public class OfferService {
 
         try {
             // 3️⃣ Accept / Reject links
-            String acceptLink = baseUrl + "/offer/respond/" + offer.getId() + "?action=accept";
-            String rejectLink = baseUrl + "/offer/respond/" + offer.getId() + "?action=reject";
+            String acceptLink = baseUrl + "/offer/respond/" + offer.getId() + "?action=ACCEPTED";
+            String rejectLink = baseUrl + "/offer/respond/" + offer.getId() + "?action=REJECTED";
 
             // 4️⃣ HTML Mail Body
             String html = """
@@ -119,5 +119,9 @@ public class OfferService {
 
     public List<Offer> getOffersByResponse(String status) {
         return offerRepository.findByCandidateResponse(status);
+    }
+
+    public List<Offer> getOffersByResponseNull() {
+        return offerRepository.findByCandidateResponseIsNull();
     }
 }

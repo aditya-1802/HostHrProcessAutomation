@@ -23,4 +23,6 @@ public interface OfferRepository extends JpaRepository<Offer, Long> {
     boolean existsByEmail(String email);
 
 	List<Offer> findByCandidateResponse(String status);
+
+	List<Offer> findByCandidateResponseIsNull();
 }

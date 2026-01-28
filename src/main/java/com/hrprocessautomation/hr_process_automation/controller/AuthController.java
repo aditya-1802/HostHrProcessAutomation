@@ -25,12 +25,7 @@ import com.hrprocessautomation.hr_process_automation.service.UserService;
 public class AuthController {
 	@Autowired
 	private UserService userService;
-
-	@GetMapping("/login")
-	public String login() {
-		return "login";
-	}
-
+	
 	@Autowired
 	private OfferService offerService;
 
@@ -42,6 +37,11 @@ public class AuthController {
 
     @Autowired
     private BulkOfferService bulkOfferService;
+
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
 
 	@PostMapping("/login")
 	public String loginUser(@RequestParam String username, @RequestParam String password, Model model) {
@@ -171,15 +171,15 @@ public class AuthController {
     	}
 
 
-        if ("accept".equalsIgnoreCase(action)) {
-            offer.setcandidateResponse(action);
-        } else if ("reject".equalsIgnoreCase(action)) {
-            offer.setcandidateResponse("REJECTED");
+        if ("ACCEPTED".equalsIgnoreCase(action)) {
+            offer.setCandidateResponse("ACCEPTED");
+        } else if ("REJECTED".equalsIgnoreCase(action)) {
+            offer.setCandidateResponse("REJECTED");
         }
 
         offerService.saveOrUpdateOffer(offer);
 
-        model.addAttribute("status", offer.getcandidateResponse());
+        model.addAttribute("status", offer.getCandidateResponse());
         model.addAttribute("name", offer.getName());
 
         return "offerResponse";
@@ -199,13 +199,18 @@ public class AuthController {
         }else if(status.equals("REJECTED")) {
         	 offers = offerService.getOffersByResponse(status);
         }else {
-        	offers = offerService.getAllOffers();
+        	offers = offerService.getOffersByResponseNull();
         }
 
         model.addAttribute("offers", offers);
         model.addAttribute("selectedStatus", status);
 
         return "candidates";
+    }
+    
+    @GetMapping("/reports")
+    public String redirectToReports() {
+        return "redirect:https://hrautomationanalysis.streamlit.app";
     }
 
 
